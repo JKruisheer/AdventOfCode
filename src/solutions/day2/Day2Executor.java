@@ -31,7 +31,7 @@ public class Day2Executor extends SolutionExecutor {
                 CubeStorage storage = new CubeStorage(gameId, 12, 13, 14, true);
                 playGame(line, storage);
             } catch (InvalidGameException e) {
-                //nothing
+                //nothing, could make a fancy log and add a logger here in the class, but ey...
             }
         }
         Integer gameIdValues = validGames.stream().mapToInt(CubeStorage::getGameId).sum();
