@@ -13,6 +13,8 @@ public class Day3Executor extends SolutionExecutor {
     public static final String SPECIAL_CHARS = "*&/@=+#$%-";
     public static final String SPECIAL_CHARS_WITH_DOT = SPECIAL_CHARS + ".";
     public static final String NUMBERS = "0123456789";
+    public static final int[] ROW_OFFSETS = {-1, -1, -1, 0, 0, 1, 1, 1};
+    public static final int[] COL_OFFSETS = {-1, 0, 1, -1, 1, -1, 0, 1};
     private static char[][] board;
 
     public Day3Executor() {
@@ -34,7 +36,7 @@ public class Day3Executor extends SolutionExecutor {
             char[] arr = board[rowIndex];
             for (int columnIndex = 0; columnIndex < arr.length; columnIndex++) {
                 char n = arr[columnIndex];
-                if ("*".indexOf(n) != -1) {
+                if ('*' == n) {
                     totalValue += findEngineSymbols(rowIndex, columnIndex);
                 }
             }
@@ -45,17 +47,12 @@ public class Day3Executor extends SolutionExecutor {
     private Integer findEngineSymbols(int rowIndex, int columnIndex) {
         //find 2 engine symbols, if that is the case return those.
         List<EngineMappingCharacter> possibleSymbols = new ArrayList<>();
-        int numRows = board.length;
-        int numCols = board[0].length;
 
-        int[] rowOffsets = {-1, -1, -1, 0, 0, 1, 1, 1};
-        int[] colOffsets = {-1, 0, 1, -1, 1, -1, 0, 1};
+        for (int i = 0; i < ROW_OFFSETS.length; i++) {
+            int newRow = rowIndex + ROW_OFFSETS[i];
+            int newCol = columnIndex + COL_OFFSETS[i];
 
-        for (int i = 0; i < rowOffsets.length; i++) {
-            int newRow = rowIndex + rowOffsets[i];
-            int newCol = columnIndex + colOffsets[i];
-
-            if (newRow >= 0 && newRow < numRows && newCol >= 0 && newCol < numCols) {
+            if (newRow >= 0 && newRow < board.length && newCol >= 0 && newCol < board[0].length) {
                 if (NUMBERS.indexOf(board[newRow][newCol]) != -1) {
                     possibleSymbols.add(new EngineMappingCharacter(newRow, newCol, board[newRow][newCol]));
                 }
@@ -131,17 +128,11 @@ public class Day3Executor extends SolutionExecutor {
     }
 
     public boolean hasSymbolAround(int rowIndex, int colIndex, String whichSymbol) {
-        int numRows = board.length;
-        int numCols = board[0].length;
+        for (int i = 0; i < ROW_OFFSETS.length; i++) {
+            int newRow = rowIndex + ROW_OFFSETS[i];
+            int newCol = colIndex + COL_OFFSETS[i];
 
-        int[] rowOffsets = {-1, -1, -1, 0, 0, 1, 1, 1};
-        int[] colOffsets = {-1, 0, 1, -1, 1, -1, 0, 1};
-
-        for (int i = 0; i < rowOffsets.length; i++) {
-            int newRow = rowIndex + rowOffsets[i];
-            int newCol = colIndex + colOffsets[i];
-
-            if (newRow >= 0 && newRow < numRows && newCol >= 0 && newCol < numCols) {
+            if (newRow >= 0 && newRow < board.length && newCol >= 0 && newCol < board[0].length) {
                 if (whichSymbol.indexOf(board[newRow][newCol]) != -1) {
                     return true;
                 }

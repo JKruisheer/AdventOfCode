@@ -4,7 +4,7 @@ import solutions.day3.Day3Executor;
 
 public class runner {
     public static void main(String[] args) {
-        switch (2) {
+        switch (3) {
             case 1:
                 new Day1Executor().solve();
                 break;
