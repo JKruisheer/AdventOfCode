@@ -1,4 +1,4 @@
-package day3;
+package solutions.day3;
 
 public class EngineMappingCharacter {
 
@@ -24,15 +24,15 @@ public class EngineMappingCharacter {
         return columnIndex;
     }
 
-    public Integer getColumnIndexAndDecrease(){
+    public Integer getColumnIndexAndDecrease() {
         return --alteredColumnIndex;
     }
 
-    public Integer getColumnIndexAndIncrease(){
+    public Integer getColumnIndexAndIncrease() {
         return ++alteredColumnIndex;
     }
 
-    public void resetColumnIndex(){
+    public void resetColumnIndex() {
         this.alteredColumnIndex = columnIndex;
     }
 

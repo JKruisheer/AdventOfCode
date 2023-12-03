@@ -1,4 +1,4 @@
-package day2;
+package solutions.day2;
 
 public class InvalidGameException extends Exception {
 

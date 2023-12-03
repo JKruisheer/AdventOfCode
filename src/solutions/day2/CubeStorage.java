@@ -1,4 +1,4 @@
-package day2;
+package solutions.day2;
 
 public class CubeStorage {
 
@@ -11,39 +11,42 @@ public class CubeStorage {
     public Integer highestBlue = 1;
     public Integer highestGreen = 1;
 
-    public CubeStorage(Integer gameId, Integer red, Integer green, Integer blue) {
+    public boolean throwException;
+
+    public CubeStorage(Integer gameId, Integer red, Integer green, Integer blue, boolean throwException) {
         this.gameId = gameId;
         this.red = red;
         this.green = green;
         this.blue = blue;
+        this.throwException = throwException;
     }
 
     public void removeRedCube(Integer value) throws InvalidGameException {
-        red = red -value;
-        if(red < 0){
-//            throw new InvalidGameException();
+        red = red - value;
+        if (red < 0 && throwException) {
+            throw new InvalidGameException();
         }
-        if(value > highestRed){
+        if (value > highestRed) {
             highestRed = value;
         }
     }
 
     public void removeGreenCube(Integer value) throws InvalidGameException {
         green = green - value;
-        if(green < 0){
-//            throw new InvalidGameException();
+        if (green < 0 && throwException) {
+            throw new InvalidGameException();
         }
-        if(value > highestGreen){
+        if (value > highestGreen) {
             highestGreen = value;
         }
     }
 
     public void removeBlueCube(Integer value) throws InvalidGameException {
-        blue = blue -value;
-        if(blue < 0){
-//            throw new InvalidGameException();
+        blue = blue - value;
+        if (blue < 0 && throwException) {
+            throw new InvalidGameException();
         }
-        if(value > highestBlue){
+        if (value > highestBlue) {
             highestBlue = value;
         }
     }
@@ -52,7 +55,7 @@ public class CubeStorage {
         return gameId;
     }
 
-    public Integer getTotalMultiplication(){
+    public Integer getTotalMultiplication() {
         return highestBlue * highestGreen * highestRed;
     }
 
